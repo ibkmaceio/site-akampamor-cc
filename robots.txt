@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO:IGREJA — substituir pela URL real do site quando publicado
+Sitemap: https://akampamor.com.br/sitemap.xml
