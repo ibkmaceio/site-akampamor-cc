@@ -192,7 +192,7 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
   function tick() {
     const diff = target - Date.now();
     if (diff <= 0) {
-      cdWrap && (cdWrap.style.display = 'none');
+      cdWrap && cdWrap.classList.add('expired');
       return;
     }
     const days  = Math.floor(diff / 86400000);
