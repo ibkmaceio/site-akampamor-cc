@@ -3210,6 +3210,20 @@ a:visited { color: var(--gold); opacity: 0.8; }
   <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 
   <!-- ══════════════════════════════════
+       DEADLINE BAR
+  ══════════════════════════════════ -->
+  <div class="deadline-bar" id="deadline-bar" data-deadline="2026-11-20T08:00:00-03:00" data-start="2026-01-07T00:00:00-03:00">
+    <div class="deadline-inner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="deadline-text">
+        Faltam <strong id="deadline-dias">--</strong> dias · Inscrições até <strong>20/11/2026</strong> · vagas limitadas
+      </span>
+      <a href="#inscricao" class="deadline-cta">Garantir Vaga</a>
+    </div>
+    <div class="deadline-progress"><div class="deadline-fill" id="deadline-fill"></div></div>
+  </div>
+
+  <!-- ══════════════════════════════════
        HEADER
   ══════════════════════════════════ -->
   <header class="header" id="topo">
@@ -3240,20 +3254,6 @@ a:visited { color: var(--gold); opacity: 0.8; }
   </header>
 
   <main id="conteudo">
-
-  <!-- ══════════════════════════════════
-       DEADLINE BAR
-  ══════════════════════════════════ -->
-  <div class="deadline-bar" id="deadline-bar" data-deadline="2026-11-20T08:00:00-03:00" data-start="2026-01-07T00:00:00-03:00">
-    <div class="deadline-inner">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="deadline-text">
-        Faltam <strong id="deadline-dias">--</strong> dias · Inscrições até <strong>20/11/2026</strong> · vagas limitadas
-      </span>
-      <a href="#inscricao" class="deadline-cta">Garantir Vaga</a>
-    </div>
-    <div class="deadline-progress"><div class="deadline-fill" id="deadline-fill"></div></div>
-  </div>
 
   <!-- ══════════════════════════════════
        HERO — 4 ESTAÇÕES
