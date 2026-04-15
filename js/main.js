@@ -241,19 +241,23 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
 
     const dias = Math.ceil(diff / 86400000);
     elDias.textContent = dias;
+  }
 
-    const totalMs = deadline - start;
-    const decorridoMs = Math.max(0, now - start);
-    const pct = Math.min(100, (decorridoMs / totalMs) * 100);
+  function updateScrollProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
     elFill.style.width = pct + '%';
   }
 
   updateBar();
+  updateScrollProgress();
   // Medir altura real após layout
   requestAnimationFrame(() => {
     document.documentElement.style.setProperty('--db-h', `${bar.offsetHeight}px`);
   });
   setInterval(updateBar, 60000);
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
   window.addEventListener('resize', () => {
     if (!bar.classList.contains('hidden')) {
       document.documentElement.style.setProperty('--db-h', `${bar.offsetHeight}px`);

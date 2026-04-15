@@ -1758,7 +1758,8 @@ a:hover { color: var(--gold-light); }
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, var(--gold), var(--gold-light));
-  transition: width 0.8s ease;
+  transition: width 0.1s linear;
+  will-change: width;
 }
 
 /* ══════════════════════════════════════════════
