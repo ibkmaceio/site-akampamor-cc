@@ -243,22 +243,33 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
     elDias.textContent = dias;
   }
 
+  function computeScrollPct() {
+    const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    const docHeight = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+    return docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+  }
+
+  let scrollTicking = false;
   function updateScrollProgress() {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
-    elFill.style.width = pct + '%';
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      elFill.style.width = computeScrollPct() + '%';
+      scrollTicking = false;
+    });
   }
 
   updateBar();
-  updateScrollProgress();
+  elFill.style.width = computeScrollPct() + '%';
   // Medir altura real após layout
   requestAnimationFrame(() => {
     document.documentElement.style.setProperty('--db-h', `${bar.offsetHeight}px`);
   });
   setInterval(updateBar, 60000);
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('touchmove', updateScrollProgress, { passive: true });
   window.addEventListener('resize', () => {
+    updateScrollProgress();
     if (!bar.classList.contains('hidden')) {
       document.documentElement.style.setProperty('--db-h', `${bar.offsetHeight}px`);
     }
