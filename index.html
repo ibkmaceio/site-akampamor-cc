@@ -6,7 +6,7 @@
 
   <!-- ── SEO básico ── -->
   <title>Akampamor 2026 — 4 Estações do Casamento | Gravatá-PE</title>
-  <meta name="description" content="O maior acampamento de casais do Nordeste. 20–22 nov 2026 · Hotel Canárius · Gravatá-PE. Hospedagem, 6 refeições e ministrações a partir de R$ 3.200. Inscrições abertas!" />
+  <meta name="description" content="O maior acampamento de casais do Nordeste. 20–22 nov 2026 · Hotel Canárius · Gravatá-PE. 6 refeições e ministrações a partir de R$ 3.200. Inscrições abertas!" />
   <meta name="keywords" content="acampamento de casais, retiro para casais, Akampamor 2026, casais cristãos, Gravatá, Hotel Canárius, IBK Maceió, fortalecimento do casamento, retiro conjugal nordeste" />
   <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="google07e67bf7c392d983" />
@@ -18,17 +18,18 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:title" content="Akampamor 2026 — 4 Estações do Casamento" />
   <meta property="og:description" content="O maior acampamento de casais do Nordeste. 20 a 22 nov 2026 · Hotel Canárius de Gravatá-PE · A partir de R$ 3.200 no PIX · Inscrições abertas!" />
-  <meta property="og:image" content="https://akampamor.com.br/images/og-akampamor-2026.jpg" />
+  <meta property="og:image" content="https://akampamor.com.br/images/og-akampamor-2026.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Akampamor 2026 — 4 Estações do Casamento · 20 a 22 nov · Hotel Canárius · Gravatá-PE" />
   <meta property="og:url" content="https://akampamor.com.br/" />
+  <meta property="og:site_name" content="Akampamor" />
 
   <!-- ── Twitter / X Card ── -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Akampamor 2026 — 4 Estações do Casamento" />
   <meta name="twitter:description" content="O maior acampamento de casais do Nordeste. 20 a 22 nov 2026 · Hotel Canárius · A partir de R$ 3.200 no PIX." />
-  <meta name="twitter:image" content="https://akampamor.com.br/images/og-akampamor-2026.jpg" />
+  <meta name="twitter:image" content="https://akampamor.com.br/images/og-akampamor-2026.webp" />
 
   <!-- ── Favicon e PWA ── -->
   <link rel="icon" href="images/Favicon.png" type="image/png" />
@@ -58,6 +59,7 @@
         "streetAddress": "Rua Tradição, Alpes Suíços",
         "addressLocality": "Gravatá",
         "addressRegion": "PE",
+        "postalCode": "55641-000",
         "addressCountry": "BR"
       }
     },
@@ -66,6 +68,12 @@
       "name": "Igreja Koinonia de Maceió — IBK",
       "email": "eventos@ibkmaceio.com.br"
     },
+    "performer": [
+      { "@type": "Person", "name": "Pr. Pedro Luz" },
+      { "@type": "Person", "name": "Pr. Josué" },
+      { "@type": "Person", "name": "Pr. Zezinho" },
+      { "@type": "Person", "name": "Aryanne Marques" }
+    ],
     "offers": [
       {
         "@type": "Offer",
@@ -88,7 +96,7 @@
         "url": "https://gestaoweb.eklesiaonline.com.br/divulgacao/n/4e3b1951c16c4d7f1e"
       }
     ],
-    "image": "https://live.staticflickr.com/65535/54940353787_e38d53f7e4_b.jpg",
+    "image": "https://akampamor.com.br/images/og-akampamor-2026.webp",
     "inLanguage": "pt-BR",
     "typicalAgeRange": "18-"
   }
@@ -97,7 +105,8 @@
   <!-- ── Performance: preload crítico ── -->
   <link rel="preload" href="images/casal-retiro-akampamor-2026-mobile.webp" as="image" type="image/webp" />
   <link rel="preload" href="images/casal-retiro-akampamor-2026.webp" as="image" type="image/webp" media="(min-width: 481px)" />
-  <link rel="preconnect" href="https://live.staticflickr.com" />
+  <link rel="preconnect" href="https://live.staticflickr.com" crossorigin />
+  <link rel="preconnect" href="https://img.youtube.com" crossorigin />
   <style>
     @font-face{font-family:'Great Vibes';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/great-vibes-latin.woff2') format('woff2')}
     @font-face{font-family:'Playfair Display';font-style:normal;font-weight:700 900;font-display:swap;src:url('assets/fonts/playfair-display-normal-latin.woff2') format('woff2')}
@@ -145,7 +154,7 @@
   --surface:     rgba(20,9,9,0.85);
   --text:        #F0DFD0;
   --muted:       #BEA898;
-  --muted-dim:   rgba(190,168,152,0.5);
+  --muted-dim:   #9A8880;
   --white:       #FFFFFF;
 
   --font-display: 'Playfair Display', 'Georgia', serif;
@@ -242,6 +251,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 2.25rem;
+  min-height: 44px;
   border-radius: 3px;
   font-family: var(--font-body);
   font-size: 0.8rem;
@@ -2790,9 +2800,27 @@ a:visited { color: var(--gold); opacity: 0.8; }
   .parcelamento-tabela { grid-template-columns: repeat(5, 1fr); gap: 0.45rem; }
   .parcela-item { padding: 0.7rem 0.15rem; }
   .parcela-item strong { font-size: 1.1rem; }
+  .countdown-label { font-size: 0.6rem; }
+  .parcela-item span { font-size: 0.6rem; }
   .depo-stats { padding: 1.35rem 0.85rem; }
   .contato-float { right: 1rem; bottom: 1rem; width: 52px; height: 52px; }
   .contato-float svg { width: 22px; height: 22px; }
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE — 375px (iPhone SE / pequenos)
+══════════════════════════════════════════════ */
+@media (max-width: 375px) {
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .countdown-num { font-size: 1.6rem; }
+  .countdown-label { font-size: 0.55rem; }
+  .parcelamento-tabela { gap: 0.3rem; }
+  .parcela-item { padding: 0.6rem 0.1rem; }
+  .parcela-item strong { font-size: 0.95rem; }
+  .parcela-item span { font-size: 0.55rem; }
+  .preco-valor strong { font-size: 3rem; }
+  .hero-preco { font-size: 0.8rem; }
 }
 
 /* ══════════════════════════════════════════════
@@ -2958,7 +2986,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
   }
   .hero-layout {
     grid-template-columns: 1fr;
-    padding-top: 120px;
+    padding-top: calc(120px + var(--db-h));
     padding-bottom: 60px;
     text-align: center;
   }
@@ -3157,7 +3185,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
   <header class="header" id="topo">
     <div class="container header-inner">
       <a href="#topo" class="logo-link">
-        <img src="images/logo-akampamor-branco.webp" alt="Akampamor 2026" class="logo" width="95" height="40" />
+        <img src="images/logo-akampamor-branco.webp" alt="Logo Akampamor 2026" class="logo" width="95" height="40" />
       </a>
       <nav class="nav-desk">
         <a href="#tema">O Evento</a>
@@ -3167,18 +3195,18 @@ a:visited { color: var(--gold); opacity: 0.8; }
         <a href="#faq">FAQ</a>
         <a href="#inscricao" class="nav-cta">Inscreva-se</a>
       </nav>
-      <button class="burger" id="burger" aria-label="Menu">
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
-    <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu móvel" aria-hidden="true">
       <a href="#tema">O Evento</a>
       <a href="#investimento">Valores</a>
       <a href="#preletores">Preletores</a>
       <a href="#galeria">Galeria</a>
       <a href="#faq">FAQ</a>
       <a href="#inscricao">Inscreva-se</a>
-    </div>
+    </nav>
   </header>
 
   <main id="conteudo">
@@ -3192,7 +3220,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
       <span class="deadline-text">
         Faltam <strong id="deadline-dias">--</strong> dias · Inscrições até <strong>20/11/2026</strong> · vagas limitadas
       </span>
-      <a href="#inscricao" class="deadline-cta">Inscrever</a>
+      <a href="#inscricao" class="deadline-cta">Garantir Vaga</a>
     </div>
     <div class="deadline-progress"><div class="deadline-fill" id="deadline-fill"></div></div>
   </div>
@@ -3209,7 +3237,8 @@ a:visited { color: var(--gold); opacity: 0.8; }
       <!-- Coluna esquerda: texto -->
       <div class="hero-left">
         <h1 class="hero-titulo-wrapper hero-anim-1">
-          <span class="hero-numero">4</span>
+          <span class="sr-only">Akampamor 2026 — Acampamento de Casais: </span>
+          <span class="hero-numero" aria-hidden="true">4</span>
           <div class="hero-titulo-texto">
             <em class="hero-estacoes">Estações</em>
             <span class="hero-sub">do casamento</span>
@@ -3261,18 +3290,18 @@ a:visited { color: var(--gold); opacity: 0.8; }
         </div>
 
         <p class="hero-preco hero-anim-7">A partir de <strong>R$ 3.200</strong> no PIX · ou <strong>10x sem juros</strong> no cartão</p>
-        <p class="hero-tagline hero-anim-7">Inscreva-se e participe do melhor<br />Acampamento de Casais do Nordeste.</p>
+        <p class="hero-tagline hero-anim-7">Descubra em qual estação o seu casamento está<br />— e como prosperar em cada fase.</p>
       </div>
 
       <!-- Coluna direita: foto do casal -->
       <div class="hero-right">
         <div class="hero-foto-frame">
-          <img src="images/casal-retiro-akampamor-2026.webp" srcset="images/casal-retiro-akampamor-2026-mobile.webp 480w, images/casal-retiro-akampamor-2026.webp 800w" sizes="(max-width: 768px) 480px, 800px" alt="Akampamor 2026" class="hero-foto" width="800" height="800" fetchpriority="high" />
+          <img src="images/casal-retiro-akampamor-2026.webp" srcset="images/casal-retiro-akampamor-2026-mobile.webp 480w, images/casal-retiro-akampamor-2026.webp 800w" sizes="(max-width: 960px) 480px, 800px" alt="Casal participando do Akampamor 2026 — Hotel Canárius, Gravatá-PE" class="hero-foto" width="800" height="800" fetchpriority="high" />
         </div>
       </div>
     </div>
 
-    <div class="hero-scroll">
+    <div class="hero-scroll" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </div>
   </section>
@@ -3429,7 +3458,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
             <small>R$</small>
             <strong>3.200</strong>
           </div>
-          <p class="preco-ou">ou <strong>R$ 3.500</strong> em até <strong>10x sem juros</strong> no cartão</p>
+          <p class="preco-ou">ou <strong>R$ 3.500</strong> em até <strong>10x de R$ 350</strong> sem juros no cartão</p>
 
           <a href="https://gestaoweb.eklesiaonline.com.br/divulgacao/n/4e3b1951c16c4d7f1e" target="_blank" rel="noopener noreferrer" class="btn btn-autumn btn-lg">Inscrever no sistema oficial</a>
 
@@ -3546,7 +3575,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
           <div class="prel-body">
             <span class="prel-tag">Fundadores da IBK</span>
             <h3>Pr. Pedro Luz &amp; Carla</h3>
-            <p>Casados, pais de 3 filhos e fundadores da Igreja Koinonia em Alagoas (IBK). Vivem para pastorear, ensinar e inspirar casais a construírem relacionamentos firmados na Palavra e no amor de Cristo.</p>
+            <p>Casados, pais de 3 filhos e fundadores da IBK. Pastoreiam centenas de casais há mais de uma década — e sabem como ajudar você a redescobrir o propósito de Deus para o seu casamento, seja qual for a estação em que vocês estão.</p>
           </div>
         </article>
 
@@ -3560,7 +3589,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
           <div class="prel-body">
             <span class="prel-tag">Pregador &amp; Pastor</span>
             <h3>Pr. Josué</h3>
-            <p>Pastor e pregador ungido, comprometido com a edificação de casamentos sólidos. Traz à Palavra a profundidade e o calor necessários para transformar vidas e relacionamentos.</p>
+            <p>Suas pregações têm ajudado casais em crise a encontrar esperança — e casais saudáveis a aprofundarem o amor. Você vai sair do Akampamor com a Palavra que seu casamento precisava ouvir.</p>
           </div>
         </article>
 
@@ -3574,7 +3603,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
           <div class="prel-body">
             <span class="prel-tag">Ministro da Palavra</span>
             <h3>Pr. Zezinho</h3>
-            <p>Com humor, autenticidade e profundidade, leva a Palavra de Deus ao coração dos casais. Apaixonado por ver o amor transformado pelo poder de Cristo.</p>
+            <p>Com humor e autenticidade, transforma assuntos difíceis do casamento em conversas que o casal vai querer ter ainda na volta pra casa. Prepara-se para rir, refletir e sair diferente.</p>
           </div>
         </article>
 
@@ -3663,7 +3692,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
     <div class="lb" id="lb">
       <button class="lb-close" id="lb-close" aria-label="Fechar galeria">✕</button>
       <button class="lb-prev" id="lb-prev" aria-label="Foto anterior">&#8592;</button>
-      <img class="lb-img" id="lb-img" src="" alt="" aria-hidden="true" style="aspect-ratio: auto" />
+      <img class="lb-img" id="lb-img" src="" alt="" style="aspect-ratio: auto" />
       <button class="lb-next" id="lb-next" aria-label="Próxima foto">&#8594;</button>
     </div>
 
@@ -3710,7 +3739,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
         <div class="reels-track" id="reels-track">
 
           <div class="reel-card" data-index="0">
-            <div class="reel-facade" data-src="videos/reel-5.mp4" data-thumb="videos/depoimento-casal-akampamor-5.webp">
+            <div class="reel-facade" role="button" tabindex="0" aria-label="Assistir depoimento em vídeo 1" data-src="videos/reel-5.mp4" data-thumb="videos/depoimento-casal-akampamor-5.webp">
               <div class="reel-thumb"></div>
               <div class="reel-overlay">
                 <button class="reel-play" aria-label="Assistir depoimento 1">
@@ -3722,7 +3751,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
           </div>
 
           <div class="reel-card" data-index="1">
-            <div class="reel-facade" data-src="videos/reel-1.mp4" data-thumb="videos/depoimento-casal-akampamor-1.webp">
+            <div class="reel-facade" role="button" tabindex="0" aria-label="Assistir depoimento em vídeo 2" data-src="videos/reel-1.mp4" data-thumb="videos/depoimento-casal-akampamor-1.webp">
               <div class="reel-thumb"></div>
               <div class="reel-overlay">
                 <button class="reel-play" aria-label="Assistir depoimento 2">
@@ -3734,7 +3763,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
           </div>
 
           <div class="reel-card" data-index="2">
-            <div class="reel-facade" data-src="videos/reel-2.mp4" data-thumb="videos/depoimento-casal-akampamor-2.webp">
+            <div class="reel-facade" role="button" tabindex="0" aria-label="Assistir depoimento em vídeo 3" data-src="videos/reel-2.mp4" data-thumb="videos/depoimento-casal-akampamor-2.webp">
               <div class="reel-thumb"></div>
               <div class="reel-overlay">
                 <button class="reel-play" aria-label="Assistir depoimento 3">
@@ -3746,7 +3775,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
           </div>
 
           <div class="reel-card" data-index="3">
-            <div class="reel-facade" data-src="videos/reel-3.mp4" data-thumb="videos/depoimento-casal-akampamor-3.webp">
+            <div class="reel-facade" role="button" tabindex="0" aria-label="Assistir depoimento em vídeo 4" data-src="videos/reel-3.mp4" data-thumb="videos/depoimento-casal-akampamor-3.webp">
               <div class="reel-thumb"></div>
               <div class="reel-overlay">
                 <button class="reel-play" aria-label="Assistir depoimento 4">
@@ -3758,7 +3787,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
           </div>
 
           <div class="reel-card" data-index="4">
-            <div class="reel-facade" data-src="videos/reel-4.mp4" data-thumb="videos/depoimento-casal-akampamor-4.webp">
+            <div class="reel-facade" role="button" tabindex="0" aria-label="Assistir depoimento em vídeo 5" data-src="videos/reel-4.mp4" data-thumb="videos/depoimento-casal-akampamor-4.webp">
               <div class="reel-thumb"></div>
               <div class="reel-overlay">
                 <button class="reel-play" aria-label="Assistir depoimento 5">

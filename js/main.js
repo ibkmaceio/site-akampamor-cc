@@ -15,6 +15,8 @@ const mobileMenu = document.getElementById('mobile-menu');
 burger.addEventListener('click', () => {
   const open = mobileMenu.classList.toggle('open');
   burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
   document.body.style.overflow = open ? 'hidden' : '';
 });
 
@@ -22,6 +24,8 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
     burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   });
 });
@@ -51,6 +55,7 @@ function getLargeUrl(el) {
 function openLb(i) {
   curIdx = i;
   lbImg.src = getLargeUrl(gItems[i]);
+  lbImg.alt = gItems[i].querySelector('img').alt;
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -64,6 +69,7 @@ function stepLb(dir) {
   lbImg.style.opacity = '0';
   setTimeout(() => {
     lbImg.src = getLargeUrl(gItems[curIdx]);
+    lbImg.alt = gItems[curIdx].querySelector('img').alt;
     lbImg.style.opacity = '1';
   }, 150);
 }
@@ -460,7 +466,7 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
     const thumb = facade.dataset.thumb;
 
     // Clicar num card não-ativo navega primeiro para ele
-    facade.addEventListener('click', () => {
+    const activateFacade = () => {
       if (i !== current) {
         goTo(i, true);
         return;
@@ -476,6 +482,10 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
       if (thumb) video.poster = thumb;
       card.replaceChild(video, facade);
       video.play().catch(() => {});
+    };
+    facade.addEventListener('click', activateFacade);
+    facade.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateFacade(); }
     });
   });
 
