@@ -57,7 +57,7 @@
 }
 
 /* ─── Base ─── */
-html { scroll-behavior: smooth; scroll-padding-top: calc(76px + var(--db-h)); }
+html { scroll-behavior: smooth; scroll-padding-top: calc(76px + var(--db-h)); overflow-x: hidden; }
 body {
   font-family: var(--font-body);
   background: var(--dark);
