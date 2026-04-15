@@ -116,6 +116,22 @@ a:hover { color: var(--gold-light); }
   margin-bottom: 1rem;
 }
 
+/* Skip link (acessibilidade) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  transition: top 0.15s;
+}
+.skip-link:focus { top: 1rem; }
+
 .desc {
   color: var(--muted);
   font-size: 1rem;
@@ -131,6 +147,7 @@ a:hover { color: var(--gold-light); }
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 2.25rem;
+  min-height: 44px;
   border-radius: 3px;
   font-family: var(--font-body);
   font-size: 0.8rem;
@@ -276,7 +293,9 @@ a:hover { color: var(--gold-light); }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 10px 8px;
+  padding: 10px 14px;
+  min-height: 44px;
+  min-width: 44px;
 }
 .burger span {
   width: 24px; height: 2px;
@@ -298,9 +317,9 @@ a:hover { color: var(--gold-light); }
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu a {
-  padding: 1rem 1.5rem;
+  padding: 1.1rem 1.5rem;
   color: var(--text);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
