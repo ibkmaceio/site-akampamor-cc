@@ -3173,6 +3173,36 @@ a:visited { color: var(--gold); opacity: 0.8; }
   .btn-autumn:hover::after, .btn-ghost:hover::after { opacity: 1; }
 }
 
+/* ══════════════════════════════════════════════
+   ACTIVE — feedback de toque no mobile
+══════════════════════════════════════════════ */
+.btn:active::after { opacity: 1; }
+.btn-autumn:active { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,18,48,0.45); }
+.btn-ghost:active { background: rgba(201,149,42,0.08); border-color: rgba(201,149,42,0.6); color: var(--gold-light); transform: translateY(-2px); }
+.btn-outline-autumn:active { background: rgba(196,18,48,0.12); border-color: var(--red); color: var(--white); }
+.btn-autumn:active::after, .btn-ghost:active::after { opacity: 1; }
+.estacao-card:active { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,0.4); }
+.estacao-card:active::after { opacity: 1; }
+.primavera:active { border-color: rgba(107,197,107,0.4); box-shadow: 0 20px 50px rgba(107,197,107,0.12); }
+.verao:active { border-color: rgba(201,149,42,0.4); box-shadow: 0 20px 50px rgba(201,149,42,0.12); }
+.outono:active { border-color: rgba(212,98,26,0.5); box-shadow: 0 20px 50px rgba(212,98,26,0.12); }
+.inverno:active { border-color: rgba(147,176,209,0.4); box-shadow: 0 20px 50px rgba(147,176,209,0.1); }
+.prel-card:active { transform: translateY(-8px); }
+.prel-card:active .prel-img { border-radius: var(--radius) var(--radius) 0 0; }
+.prel-card:active .prel-img img { transform: scale(1.07); }
+.info-card:active { transform: translateY(-4px); border-color: rgba(201,149,42,0.25); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+.info-card:active .info-icon { background: rgba(201,149,42,0.18); }
+.insc-card:active { transform: translateY(-4px); border-color: rgba(201,149,42,0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+.insc-card-destaque:active { transform: translateY(-6px); box-shadow: 0 28px 60px rgba(196,18,48,0.25); }
+.insc-card:active .insc-icon { background: rgba(201,149,42,0.2); border-color: rgba(201,149,42,0.5); }
+.depo-card:active { transform: translateY(-4px); border-color: rgba(201,149,42,0.2); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+.faq-item summary:active { color: var(--gold-light); }
+#btn-pix:active, #btn-pix-inv:active { background: var(--gold); color: var(--dark); }
+.deadline-cta:active { background: var(--gold-light); transform: translateY(-1px); }
+.contato-float:active { transform: scale(1.08); box-shadow: 0 8px 28px rgba(196,18,48,0.5); }
+.g-item:active img { transform: scale(1.06); }
+.nav-cta:active { background: var(--red-dark); box-shadow: 0 4px 16px rgba(196,18,48,0.4); }
+
   </style>
 </head>
 <body>
@@ -3184,7 +3214,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
   ══════════════════════════════════ -->
   <header class="header" id="topo">
     <div class="container header-inner">
-      <a href="#topo" class="logo-link">
+      <a href="/" class="logo-link">
         <img src="images/logo-akampamor-branco.webp" alt="Logo Akampamor 2026" class="logo" width="95" height="40" />
       </a>
       <nav class="nav-desk">
@@ -4057,7 +4087,7 @@ a:visited { color: var(--gold); opacity: 0.8; }
   <footer class="footer">
     <div class="container footer-inner">
       <div>
-        <img src="images/logo-akampamor-branco.webp" alt="Akampamor" class="footer-logo" width="90" height="38" />
+        <a href="/"><img src="images/logo-akampamor-branco.webp" alt="Akampamor" class="footer-logo" width="90" height="38" /></a>
         <p class="footer-slogan">A Transformação de Deus no Casamento</p>
         <p class="footer-church">Igreja Koinonia de Maceió</p>
       </div>

@@ -260,12 +260,6 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
     }
   });
 
-  const inscricao = document.getElementById('inscricao');
-  if (inscricao) {
-    new IntersectionObserver((entries) => {
-      entries.forEach(e => setBarVisible(!e.isIntersecting));
-    }, { threshold: 0.05 }).observe(inscricao);
-  }
 })();
 
 /* ─── Parcelamento — destaca mês atual ─── */
