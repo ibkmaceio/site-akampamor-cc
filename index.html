@@ -104,7 +104,7 @@
 
   <!-- ── Performance: preload crítico ── -->
   <link rel="preload" href="images/fundo.jpg" as="image" type="image/jpeg" />
-  <link rel="preload" href="images/hero-vert.jpg" as="image" type="image/jpeg" media="(min-width: 961px)" />
+  <link rel="preload" href="images/hero-preletores-v2-akampamor-2026.webp" as="image" type="image/webp" media="(min-width: 961px)" />
   <link rel="preconnect" href="https://live.staticflickr.com" crossorigin />
   <link rel="preconnect" href="https://img.youtube.com" crossorigin />
   <style>
@@ -467,81 +467,59 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   position: relative;
   z-index: 2;
   flex: 1;
-  display: grid;
-  grid-template-columns: 52% 1fr;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 0 0 1.5rem;
+  padding: 0 1.5rem;
   width: 100%;
-  gap: 0;
   transition: padding-top 0.4s ease;
 }
 
-/* Coluna esquerda */
+/* Coluna esquerda: texto */
 .hero-left {
   display: flex;
   flex-direction: column;
   gap: 0;
   padding-top: calc(120px + var(--db-h));
   padding-bottom: 80px;
-  padding-right: 2rem;
+  max-width: 580px;
   justify-content: center;
 }
 
-/* Coluna direita: foto dos preletores em vertical */
+/* Preletores: absolutamente posicionados no canto direito da hero */
 .hero-right {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  height: 100%;
-  min-height: 100svh;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: clamp(420px, 50vw, 720px);
+  pointer-events: none;
 }
 
 .hero-foto-frame {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
 }
 
-/* Blend: fade da borda esquerda para mesclar com o fundo */
+/* Fade suave na borda esquerda da foto (integra com o texto) */
 .hero-foto-frame::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    linear-gradient(to right,
-      rgba(13,3,7,1)    0%,
-      rgba(13,3,7,0.80) 18%,
-      rgba(13,3,7,0.25) 42%,
-      rgba(13,3,7,0)    65%);
-}
-
-/* Blend: fade topo/base */
-.hero-foto-frame::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(to bottom,
-      rgba(13,3,7,0.70) 0%,
-      transparent       18%,
-      transparent       75%,
-      rgba(13,3,7,0.60) 100%);
+  background: linear-gradient(to right,
+    rgba(13,3,7,0.95) 0%,
+    rgba(13,3,7,0.55) 14%,
+    rgba(13,3,7,0.10) 30%,
+    transparent       50%);
 }
 
 .hero-foto {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
   display: block;
-  filter: brightness(0.90) saturate(0.88) contrast(1.04);
 }
 
 .hero-koinonia { margin-bottom: 2rem; }
@@ -3002,25 +2980,25 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
     overflow: hidden;
   }
   .hero-layout {
-    grid-template-columns: 1fr;
     padding: 0 1.5rem;
     text-align: center;
   }
 
-  /* Oculta a coluna dos preletores no mobile */
+  /* Oculta os preletores no mobile */
   .hero-right { display: none; }
 
-  /* Padding da coluna de texto no mobile */
+  /* Padding e largura no mobile */
   .hero-left {
+    max-width: 100%;
     padding-top: calc(120px + var(--db-h));
     padding-bottom: 60px;
     padding-right: 0;
     justify-content: flex-start;
   }
 
-  /* Overlay mais escuro no mobile (fundo.jpg como único visual) */
+  /* Overlay mais escuro no mobile */
   .hero-vignette {
-    background: rgba(13,3,7,0.78);
+    background: rgba(13,3,7,0.80);
   }
   .hero-left { position: relative; z-index: 2; }
   .hero-numero { font-size: clamp(6rem, 22vw, 10rem); }
@@ -3288,13 +3266,13 @@ a:hover, a:active { color: var(--gold-light); }
         <p class="hero-tagline hero-anim-7">Descubra em qual estação o seu casamento está<br />— e como prosperar em cada fase.</p>
       </div>
 
-      <!-- Coluna direita: preletores em vertical sobre o fundo -->
-      <div class="hero-right">
-        <div class="hero-foto-frame">
-          <img src="images/hero-vert.jpg" alt="Preletores do Akampamor 2026 — casais e preletores do evento" class="hero-foto" width="790" height="990" fetchpriority="high" />
-        </div>
-      </div>
+    </div>
 
+    <!-- Preletores: absoluto no canto direito, fora do grid de texto -->
+    <div class="hero-right">
+      <div class="hero-foto-frame">
+        <img src="images/hero-preletores-v2-akampamor-2026.webp" alt="Preletores do Akampamor 2026" class="hero-foto" width="960" height="844" fetchpriority="high" />
+      </div>
     </div>
 
     <div class="hero-scroll" aria-hidden="true">
