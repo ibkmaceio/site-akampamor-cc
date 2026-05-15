@@ -340,11 +340,11 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 .hero-bg {
   position: absolute;
   inset: -5%;
-  background-image: url('../images/hero-telao-farol-akampamor.webp');
+  background-image: url('../images/hero-akampamor-2026.jpg');
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   will-change: transform;
-  filter: blur(3px) saturate(0.5) brightness(0.35);
+  filter: blur(1px) saturate(0.85) brightness(0.38);
 }
 
 /* Camadas do overlay editorial */
