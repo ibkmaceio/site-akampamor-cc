@@ -103,7 +103,8 @@
   </script>
 
   <!-- ── Performance: preload crítico ── -->
-  <link rel="preload" href="images/hero-preletores-akampamor-2026.jpg" as="image" type="image/jpeg" />
+  <link rel="preload" href="images/fundo.jpg" as="image" type="image/jpeg" />
+  <link rel="preload" href="images/hero-vert.jpg" as="image" type="image/jpeg" media="(min-width: 961px)" />
   <link rel="preconnect" href="https://live.staticflickr.com" crossorigin />
   <link rel="preconnect" href="https://img.youtube.com" crossorigin />
   <style>
@@ -408,27 +409,28 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('../images/hero-preletores-akampamor-2026.jpg');
+  background-image: url('../images/fundo.jpg');
   background-size: cover;
-  background-position: center 20%;
-  filter: brightness(0.70) saturate(0.85);
+  background-position: center center;
+  filter: brightness(0.55) saturate(0.90);
 }
 
-/* Overlay: escuro à esquerda (texto legível), leve à direita (preletores visíveis) */
+/* Overlay: escuro na esquerda para legibilidade do texto */
 .hero-vignette {
   position: absolute;
   inset: 0;
   background:
     linear-gradient(to right,
-      rgba(13,3,7,0.96) 0%,
-      rgba(13,3,7,0.88) 38%,
-      rgba(13,3,7,0.30) 58%,
-      rgba(13,3,7,0.08) 100%),
+      rgba(13,3,7,0.97) 0%,
+      rgba(13,3,7,0.85) 35%,
+      rgba(13,3,7,0.40) 55%,
+      rgba(13,3,7,0.15) 75%,
+      rgba(13,3,7,0.05) 100%),
     linear-gradient(to bottom,
-      rgba(13,3,7,0.60) 0%,
-      transparent 18%,
-      transparent 72%,
-      rgba(13,3,7,0.92) 100%);
+      rgba(13,3,7,0.65) 0%,
+      transparent 15%,
+      transparent 78%,
+      rgba(13,3,7,0.88) 100%);
 }
 
 /* Linhas decorativas verticais */
@@ -466,11 +468,11 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   z-index: 2;
   flex: 1;
   display: grid;
-  grid-template-columns: 54% 1fr;
-  align-items: center;
+  grid-template-columns: 52% 1fr;
+  align-items: stretch;
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: calc(120px + var(--db-h)) 1.5rem 80px;
+  padding: 0 0 0 1.5rem;
   width: 100%;
   gap: 0;
   transition: padding-top 0.4s ease;
@@ -481,6 +483,65 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding-top: calc(120px + var(--db-h));
+  padding-bottom: 80px;
+  padding-right: 2rem;
+  justify-content: center;
+}
+
+/* Coluna direita: foto dos preletores em vertical */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  min-height: 100svh;
+}
+
+.hero-foto-frame {
+  position: absolute;
+  inset: 0;
+}
+
+/* Blend: fade da borda esquerda para mesclar com o fundo */
+.hero-foto-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to right,
+      rgba(13,3,7,1)    0%,
+      rgba(13,3,7,0.80) 18%,
+      rgba(13,3,7,0.25) 42%,
+      rgba(13,3,7,0)    65%);
+}
+
+/* Blend: fade topo/base */
+.hero-foto-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      rgba(13,3,7,0.70) 0%,
+      transparent       18%,
+      transparent       75%,
+      rgba(13,3,7,0.60) 100%);
+}
+
+.hero-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.90) saturate(0.88) contrast(1.04);
 }
 
 .hero-koinonia { margin-bottom: 2rem; }
@@ -2942,21 +3003,24 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   }
   .hero-layout {
     grid-template-columns: 1fr;
-    padding-top: calc(120px + var(--db-h));
-    padding-bottom: 60px;
+    padding: 0 1.5rem;
     text-align: center;
   }
-  .hero-layout { flex: 1; }
 
-  /* No mobile: overlay mais escuro para texto legível sobre a foto */
+  /* Oculta a coluna dos preletores no mobile */
+  .hero-right { display: none; }
+
+  /* Padding da coluna de texto no mobile */
+  .hero-left {
+    padding-top: calc(120px + var(--db-h));
+    padding-bottom: 60px;
+    padding-right: 0;
+    justify-content: flex-start;
+  }
+
+  /* Overlay mais escuro no mobile (fundo.jpg como único visual) */
   .hero-vignette {
-    background:
-      rgba(13,3,7,0.82),
-      linear-gradient(to bottom,
-        rgba(13,3,7,0.70) 0%,
-        rgba(13,3,7,0.50) 40%,
-        rgba(13,3,7,0.70) 75%,
-        rgba(13,3,7,0.95) 100%);
+    background: rgba(13,3,7,0.78);
   }
   .hero-left { position: relative; z-index: 2; }
   .hero-numero { font-size: clamp(6rem, 22vw, 10rem); }
@@ -3222,6 +3286,13 @@ a:hover, a:active { color: var(--gold-light); }
 
         <p class="hero-preco hero-anim-7">A partir de <strong>R$ 3.200</strong> no PIX · ou <strong>10x sem juros</strong> no cartão</p>
         <p class="hero-tagline hero-anim-7">Descubra em qual estação o seu casamento está<br />— e como prosperar em cada fase.</p>
+      </div>
+
+      <!-- Coluna direita: preletores em vertical sobre o fundo -->
+      <div class="hero-right">
+        <div class="hero-foto-frame">
+          <img src="images/hero-vert.jpg" alt="Preletores do Akampamor 2026 — casais e preletores do evento" class="hero-foto" width="790" height="990" fetchpriority="high" />
+        </div>
       </div>
 
     </div>
