@@ -1,8 +1,9 @@
 /* ══════════════════════════════════════════════
    AKAMPAMOR 2026 — 4 Estações do Casamento
-   Paleta: #C41230 vermelho | #C9952A ouro outono
-           #3D0D18 bordô    | #12040A escuro
-           #C4758F rosa cereja (novo)
+   Paleta derivada da hero dos preletores:
+   #C41230 vermelho | #C9952A ouro outono
+   #4A0F1A bordô    | #0D0307 escuro vinho
+   #D4688A rosa cerejeira (cerejeiras do fundo)
 ══════════════════════════════════════════════ */
 
 /* ─── Reset ─── */
@@ -25,18 +26,18 @@
   --red:         #C41230;
   --red-dark:    #8f0d22;
   --red-glow:    rgba(196,18,48,0.35);
-  --burgundy:    #3D0D18;
-  --rose:        #C4758F;
-  --rose-dim:    rgba(196,117,143,0.15);
+  --burgundy:    #4A0F1A;
+  --rose:        #D4688A;
+  --rose-dim:    rgba(212,104,138,0.15);
   --gold:        #C9952A;
   --gold-light:  #E2B96A;
   --gold-dim:    rgba(201,149,42,0.15);
   --orange:      #D4621A;
-  --dark:        #12040A;
-  --dark-2:      #1A0710;
-  --dark-3:      #240C17;
-  --dark-4:      #300F1E;
-  --surface:     rgba(18,4,10,0.88);
+  --dark:        #0D0307;
+  --dark-2:      #160409;
+  --dark-3:      #1F060D;
+  --dark-4:      #2A0911;
+  --surface:     rgba(13,3,7,0.90);
   --text:        #F0DFD0;
   --muted:       #A88090;
   --muted-dim:   rgba(168,128,144,0.5);
@@ -221,7 +222,7 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   transition: background var(--t), box-shadow var(--t), backdrop-filter var(--t), top 0.4s ease;
 }
 .header.stuck {
-  background: rgba(10,5,5,0.96);
+  background: rgba(13,3,7,0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 rgba(201,149,42,0.12), 0 4px 24px rgba(0,0,0,0.7);
@@ -312,7 +313,7 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 .mobile-menu {
   display: none;
   flex-direction: column;
-  background: rgba(10,5,5,0.98);
+  background: rgba(13,3,7,0.98);
   border-top: 1px solid rgba(201,149,42,0.15);
   backdrop-filter: blur(12px);
 }
@@ -342,12 +343,11 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 
 .hero-bg {
   position: absolute;
-  inset: -5%;
-  background-image: url('../images/hero-akampamor-2026.jpg');
+  inset: 0;
+  background-image: url('../images/hero-preletores-akampamor-2026.jpg');
   background-size: cover;
-  background-position: center center;
-  will-change: transform;
-  filter: blur(2px) saturate(0.95) brightness(0.45);
+  background-position: center 20%;
+  filter: brightness(0.70) saturate(0.85);
 }
 
 /* Camadas do overlay editorial */
@@ -637,9 +637,9 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, transparent 55%, rgba(10,5,5,0.95) 100%),
-    linear-gradient(to right,  transparent 70%, rgba(10,5,5,0.6)  100%),
-    linear-gradient(to top,    transparent 90%, rgba(10,5,5,0.4)  100%);
+    linear-gradient(to bottom, transparent 55%, rgba(13,3,7,0.95) 100%),
+    linear-gradient(to right,  transparent 70%, rgba(13,3,7,0.6)  100%),
+    linear-gradient(to top,    transparent 90%, rgba(13,3,7,0.4)  100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -879,7 +879,7 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   inset: 0;
   background: linear-gradient(135deg,
     rgba(100,20,20,0.94) 0%,
-    rgba(10,5,5,0.92) 100%);
+    rgba(13,3,7,0.92) 100%);
 }
 .versiculo-content {
   position: relative;
@@ -1044,9 +1044,9 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(10,5,5,0.92) 0%,
+    rgba(13,3,7,0.92) 0%,
     rgba(107,26,26,0.8) 50%,
-    rgba(10,5,5,0.92) 100%);
+    rgba(13,3,7,0.92) 100%);
 }
 .cta-mid-content {
   position: relative;
@@ -1466,7 +1466,7 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom,
-    rgba(10,5,5,0.95) 0%,
+    rgba(13,3,7,0.95) 0%,
     rgba(20,9,9,0.92) 100%);
 }
 .inscricao-inner {
@@ -2647,7 +2647,7 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 .form-inscricao input[type="email"],
 .form-inscricao input[type="tel"],
 .form-inscricao select {
-  background: rgba(10,5,5,0.7);
+  background: rgba(13,3,7,0.7);
   border: 1px solid rgba(201,149,42,0.2);
   border-radius: var(--radius-sm);
   padding: 0.7rem 0.85rem;
