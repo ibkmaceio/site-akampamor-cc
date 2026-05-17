@@ -1,6 +1,12 @@
 /* ══════════════════════════════════════════════
    AKAMPAMOR 2026 — main.js
 ══════════════════════════════════════════════ */
+(function () {
+  var blocked = ['r', 'mod', 'uri', 'elementor_library', 'et_core_page_resource'];
+  var params = new URLSearchParams(window.location.search);
+  var dirty = blocked.some(function (p) { return params.has(p); });
+  if (dirty) { window.location.replace(window.location.pathname); }
+})();
 
 /* ─── Header scroll ─── */
 const header = document.querySelector('.header');
@@ -30,11 +36,26 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
+/* ─── Hero scroll hint ─── */
+const heroScroll = document.querySelector('.hero-scroll');
+if (heroScroll) {
+  heroScroll.addEventListener('click', () => {
+    const next = document.querySelector('#tema') || document.querySelector('.tema');
+    if (next) next.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
 /* ─── Hero parallax ─── */
 const heroBg = document.querySelector('.hero-bg');
 if (heroBg) {
+  let parallaxTicking = false;
   window.addEventListener('scroll', () => {
-    heroBg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+    if (parallaxTicking) return;
+    parallaxTicking = true;
+    requestAnimationFrame(() => {
+      heroBg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+      parallaxTicking = false;
+    });
   }, { passive: true });
 }
 
@@ -74,7 +95,10 @@ function stepLb(dir) {
   }, 150);
 }
 
-gItems.forEach((el, i) => el.addEventListener('click', () => openLb(i)));
+gItems.forEach((el, i) => {
+  el.addEventListener('click', () => openLb(i));
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(i); } });
+});
 lbClose.addEventListener('click', closeLb);
 lbPrev.addEventListener('click', () => stepLb(-1));
 lbNext.addEventListener('click', () => stepLb(1));
@@ -378,85 +402,125 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
       return;
     }
 
-    const corpo = [
-      'Pré-inscrição Akampamor 2026',
-      '',
-      `Marido: ${data.marido}`,
-      `Esposa: ${data.esposa}`,
-      `E-mail: ${data.email}`,
-      `WhatsApp: ${data.telefone}`,
-      `Cidade/UF: ${data.cidade}`,
-      `Forma de pagamento desejada: ${data.pagamento}`,
-      `Confirmação de casamento no civil: Sim`,
-      '',
-      'Enviado via site oficial do Akampamor 2026.'
-    ].join('\n');
+    // Web3Forms — obter chave grátis em https://web3forms.com/ com o e-mail eventos@ibkmaceio.com.br
+    const WEB3FORMS_KEY = 'COLE_SUA_CHAVE_AQUI';
 
-    const subject = `Pré-inscrição Akampamor 2026 — ${data.marido} & ${data.esposa}`;
-    const mailto = `mailto:eventos@ibkmaceio.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(corpo)}`;
+    const payload = new FormData();
+    payload.append('access_key', WEB3FORMS_KEY);
+    payload.append('subject', `Pré-inscrição Akampamor 2026 — ${data.marido} & ${data.esposa}`);
+    payload.append('from_name', 'Site Akampamor 2026');
+    payload.append('Marido', data.marido);
+    payload.append('Esposa', data.esposa);
+    payload.append('Email', data.email);
+    payload.append('WhatsApp', data.telefone);
+    payload.append('Cidade_UF', data.cidade);
+    payload.append('Pagamento', data.pagamento);
+    payload.append('Casados_no_civil', 'Sim');
 
-    window.location.href = mailto;
-    status.textContent = '✓ Abrindo seu cliente de e-mail... Você também pode finalizar no sistema oficial.';
-    status.classList.add('sucesso');
-    status.classList.remove('erro');
+    const btnSubmit = form.querySelector('[type="submit"]');
+    btnSubmit.disabled = true;
+    btnSubmit.textContent = 'Enviando…';
+
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload })
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          status.textContent = '✓ Pré-inscrição recebida! Entraremos em contato em até 24h.';
+          status.classList.add('sucesso');
+          status.classList.remove('erro');
+          form.reset();
+        } else {
+          throw new Error(json.message || 'Erro desconhecido');
+        }
+      })
+      .catch(() => {
+        mostrarErro('Erro ao enviar. Tente diretamente: eventos@ibkmaceio.com.br');
+      })
+      .finally(() => {
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = 'Enviar pré-inscrição';
+      });
   });
 })();
 
-/* ─── Reels Carousel — carrossel com peek, setas, dots e vídeo inline ─── */
+/* ─── Reels Carousel — circular infinito com peek bilateral ─── */
 (function initReelsCarousel() {
   const carousel = document.getElementById('reels-carousel');
   if (!carousel) return;
 
-  const track   = document.getElementById('reels-track');
-  const btnPrev = document.getElementById('reels-prev');
-  const btnNext = document.getElementById('reels-next');
-  const dots    = Array.from(document.querySelectorAll('.reels-dot'));
-  const cards   = Array.from(track.querySelectorAll('.reel-card'));
+  const track     = document.getElementById('reels-track');
+  const btnPrev   = document.getElementById('reels-prev');
+  const btnNext   = document.getElementById('reels-next');
+  const dots      = Array.from(document.querySelectorAll('.reels-dot'));
+  const realCards = Array.from(track.querySelectorAll('.reel-card'));
 
-  if (!cards.length) return;
+  if (!realCards.length) return;
 
-  let current = 0;
+  const n = realCards.length;
 
-  /* ── Posicionamento: centraliza o card ativo no viewport ── */
-  function getTrackOffset(idx) {
-    const card = cards[idx];
+  /* Clone último antes do primeiro e primeiro depois do último */
+  const headClone = realCards[n - 1].cloneNode(true);
+  const tailClone = realCards[0].cloneNode(true);
+  [headClone, tailClone].forEach(c => {
+    c.setAttribute('aria-hidden', 'true');
+    c.removeAttribute('id');
+  });
+  track.insertBefore(headClone, realCards[0]);
+  track.appendChild(tailClone);
+
+  /* allCards = [headClone, real0..realN-1, tailClone] */
+  const allCards = Array.from(track.querySelectorAll('.reel-card'));
+
+  /* current é índice em allCards; real card[i] → allCards[i+1] */
+  let current = 3; /* começa no card do meio (real2) — 2 cards de cada lado */
+  let snapping = false;
+
+  function getOffset(idx) {
+    const card      = allCards[idx];
     const carouselW = carousel.offsetWidth;
     const cardW     = card.offsetWidth;
     const gap       = parseFloat(getComputedStyle(track).gap) || 22;
-    // Posição left do card idx dentro do track
-    const cardLeft  = idx * (cardW + gap);
-    // Offset para centralizar
-    return (carouselW / 2) - cardLeft - (cardW / 2);
+    return (carouselW / 2) - (idx * (cardW + gap)) - (cardW / 2);
+  }
+
+  function updateUI(idx) {
+    const realIdx = idx - 1;
+    allCards.forEach((c, i) => c.classList.toggle('active', i === idx));
+    dots.forEach((d, i) => d.classList.toggle('active', i === realIdx));
   }
 
   function goTo(idx, smooth) {
-    // Pausa qualquer vídeo que esteja tocando no card anterior
-    const prevCard = cards[current];
-    const prevVideo = prevCard.querySelector('video');
+    const prevVideo = allCards[current] && allCards[current].querySelector('video');
     if (prevVideo) prevVideo.pause();
 
-    current = Math.max(0, Math.min(idx, cards.length - 1));
-
-    // Move o track
-    const offset = getTrackOffset(current);
+    current = idx;
     track.style.transition = smooth === false
       ? 'none'
       : 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
-    track.style.transform = 'translateX(' + offset + 'px)';
-
-    // Atualiza classe .active
-    cards.forEach((c, i) => c.classList.toggle('active', i === current));
-
-    // Atualiza dots
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-
-    // Habilita/desabilita setas
-    if (btnPrev) btnPrev.disabled = current === 0;
-    if (btnNext) btnNext.disabled = current === cards.length - 1;
+    track.style.transform = 'translateX(' + getOffset(current) + 'px)';
+    updateUI(current);
   }
 
-  /* ── Inicializa thumbnails ── */
-  cards.forEach(card => {
+  /* Snap silencioso ao sair dos clones */
+  track.addEventListener('transitionend', () => {
+    if (snapping) return;
+    if (current === 0) {
+      snapping = true;
+      goTo(n, false);
+      requestAnimationFrame(() => { snapping = false; });
+    } else if (current === allCards.length - 1) {
+      snapping = true;
+      goTo(1, false);
+      requestAnimationFrame(() => { snapping = false; });
+    }
+  });
+
+  /* Clones roteiam para o real correspondente ao clicar */
+  headClone.addEventListener('click', () => goTo(n, true));
+  tailClone.addEventListener('click', () => goTo(1, true));
+
+  /* ── Thumbnails (reais + clones) ── */
+  allCards.forEach(card => {
     const facade  = card.querySelector('.reel-facade');
     const thumbEl = card.querySelector('.reel-thumb');
     const thumb   = facade && facade.dataset.thumb;
@@ -468,19 +532,15 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
   });
 
   /* ── Click no facade → injeta vídeo ── */
-  cards.forEach((card, i) => {
+  realCards.forEach((card, i) => {
     const facade = card.querySelector('.reel-facade');
     if (!facade) return;
     const src   = facade.dataset.src;
     const thumb = facade.dataset.thumb;
 
-    // Clicar num card não-ativo navega primeiro para ele
     const activateFacade = () => {
-      if (i !== current) {
-        goTo(i, true);
-        return;
-      }
-      // Card ativo: injeta vídeo
+      const allIdx = i + 1;
+      if (allIdx !== current) { goTo(allIdx, true); return; }
       const video = document.createElement('video');
       video.src = src;
       video.className = 'reel-video';
@@ -498,21 +558,20 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
     });
   });
 
-  /* ── Setas ── */
-  if (btnPrev) btnPrev.addEventListener('click', () => goTo(current - 1, true));
-  if (btnNext) btnNext.addEventListener('click', () => goTo(current + 1, true));
+  /* ── Setas (sempre habilitadas — circular) ── */
+  if (btnPrev) { btnPrev.disabled = false; btnPrev.addEventListener('click', () => goTo(current - 1, true)); }
+  if (btnNext) { btnNext.disabled = false; btnNext.addEventListener('click', () => goTo(current + 1, true)); }
 
   /* ── Dots ── */
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.goto, 10);
-      if (!isNaN(idx)) goTo(idx, true);
+      if (!isNaN(idx)) goTo(idx + 1, true);
     });
   });
 
-  /* ── Swipe touch para mobile ── */
-  let touchStartX = 0;
-  let touchStartY = 0;
+  /* ── Swipe touch ── */
+  let touchStartX = 0, touchStartY = 0;
   carousel.addEventListener('touchstart', e => {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
@@ -520,9 +579,7 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
   carousel.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - touchStartX;
     const dy = e.changedTouches[0].clientY - touchStartY;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-      goTo(dx < 0 ? current + 1 : current - 1, true);
-    }
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1, true);
   }, { passive: true });
 
   /* ── Teclado ── */
@@ -531,11 +588,29 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
     if (e.key === 'ArrowRight') goTo(current + 1, true);
   });
 
-  /* ── Reposiciona ao redimensionar (sem animação) ── */
+  /* ── Resize ── */
   window.addEventListener('resize', () => goTo(current, false), { passive: true });
 
-  /* ── Estado inicial ── */
-  goTo(0, false);
+  /* ── Init ── */
+  goTo(3, false);
+})();
+
+/* ─── Scroll animations — fade-up ao entrar na viewport ─── */
+(function initScrollAnim() {
+  const els = Array.from(document.querySelectorAll('[data-anim]'));
+  if (!els.length || !('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => io.observe(el));
 })();
 
 /* ─── Contato flutuante — esconde na seção #inscricao ─── */
