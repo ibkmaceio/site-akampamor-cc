@@ -118,9 +118,11 @@ function copiarPix(btnId) {
 
   function markCopiado() {
     btn.textContent = '✓ Copiado!';
+    btn.setAttribute('aria-label', 'Chave PIX copiada!');
     btn.classList.add('copiado');
     setTimeout(() => {
       btn.textContent = 'Copiar Chave';
+      btn.setAttribute('aria-label', 'Copiar chave PIX');
       btn.classList.remove('copiado');
     }, 2800);
   }
@@ -612,6 +614,7 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   els.forEach(el => io.observe(el));
 })();
+
 
 /* ─── Contato flutuante — esconde na seção #inscricao ─── */
 (function initContatoFloat() {
