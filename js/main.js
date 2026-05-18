@@ -617,13 +617,3 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
 })();
 
 
-/* ─── Contato flutuante — esconde na seção #inscricao ─── */
-(function initContatoFloat() {
-  const float = document.getElementById('contato-float');
-  const inscricao = document.getElementById('inscricao');
-  if (!float || !inscricao) return;
-
-  new IntersectionObserver((entries) => {
-    entries.forEach(e => float.classList.toggle('hidden', e.isIntersecting));
-  }, { threshold: 0.1 }).observe(inscricao);
-})();
