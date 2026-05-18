@@ -405,7 +405,7 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
     }
 
     // Web3Forms — obter chave grátis em https://web3forms.com/ com o e-mail eventos@ibkmaceio.com.br
-    const WEB3FORMS_KEY = 'COLE_SUA_CHAVE_AQUI';
+    const WEB3FORMS_KEY = '22a981e8-0e7e-400a-9b66-11305ed70ee3';
 
     const payload = new FormData();
     payload.append('access_key', WEB3FORMS_KEY);
@@ -431,6 +431,7 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
           status.classList.add('sucesso');
           status.classList.remove('erro');
           form.reset();
+          if (typeof fbq === 'function') fbq('track', 'Lead');
         } else {
           throw new Error(json.message || 'Erro desconhecido');
         }

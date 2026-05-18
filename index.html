@@ -105,7 +105,8 @@
   </script>
 
   <!-- ── Performance: preload crítico ── -->
-  <link rel="preload" href="images/fundo-akampamor-2026.webp" as="image" type="image/webp" />
+  <link rel="preload" href="images/fundo-akampamor-2026-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" />
+  <link rel="preload" href="images/fundo-akampamor-2026.webp" as="image" type="image/webp" media="(min-width: 769px)" />
   <link rel="preload" href="images/preletores-akampamor-2026.webp" as="image" type="image/webp" media="(min-width: 961px)" />
   <link rel="preconnect" href="https://live.staticflickr.com" crossorigin />
   <link rel="preconnect" href="https://img.youtube.com" crossorigin />
@@ -455,10 +456,13 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('../images/fundo-akampamor-2026.webp');
+  background-image: url('../images/fundo-akampamor-2026-mobile.webp');
   background-size: cover;
   background-position: center center;
   filter: brightness(0.75) saturate(0.85);
+}
+@media (min-width: 769px) {
+  .hero-bg { background-image: url('../images/fundo-akampamor-2026.webp'); }
 }
 
 /* Overlay: escuro na esquerda para legibilidade do texto */
@@ -3233,6 +3237,8 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
 
   .hero-numero { font-size: clamp(4.5rem, 22vw, 6.5rem); }
 
+  .prel-grid { grid-template-columns: 1fr; max-width: 320px; }
+
   /* Preletores: telas pequenas */
   .hero-right { height: clamp(220px, 65vw, 340px); }
 
@@ -3340,6 +3346,10 @@ a:hover, a:active { color: var(--gold-light); }
 [data-anim-img][data-delay="9"] { transition-delay: 0.63s; }
 
   </style>
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1866666577236936');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1866666577236936&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
 </head>
 <body>
 
@@ -3373,7 +3383,7 @@ a:hover, a:active { color: var(--gold-light); }
         <a href="#preletores">Preletores</a>
         <a href="#galeria">Galeria</a>
         <a href="#faq">FAQ</a>
-        <a href="#inscricao" class="nav-cta">Inscreva-se</a>
+        <a href="#inscricao" class="nav-cta" onclick="if(typeof fbq==='function')fbq('track','InitiateCheckout')">Inscreva-se</a>
       </nav>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
@@ -3385,7 +3395,7 @@ a:hover, a:active { color: var(--gold-light); }
       <a href="#preletores">Preletores</a>
       <a href="#galeria">Galeria</a>
       <a href="#faq">FAQ</a>
-      <a href="#inscricao">Inscreva-se</a>
+      <a href="#inscricao" onclick="if(typeof fbq==='function')fbq('track','InitiateCheckout')">Inscreva-se</a>
     </nav>
   </header>
 
@@ -3446,7 +3456,7 @@ a:hover, a:active { color: var(--gold-light); }
         </div>
 
         <div class="hero-ctas hero-anim-7">
-          <a href="#inscricao" class="btn btn-autumn btn-lg">Garanta sua Vaga</a>
+          <a href="#inscricao" class="btn btn-autumn btn-lg" onclick="if(typeof fbq==='function')fbq('track','InitiateCheckout')">Garanta sua Vaga</a>
           <a href="#investimento" class="btn btn-ghost btn-lg">Investimento a partir de R$ 3.200</a>
         </div>
 
@@ -3593,7 +3603,7 @@ a:hover, a:active { color: var(--gold-light); }
             <span>Organizado pela <strong>Igreja Koinonia de Maceió</strong></span>
           </li>
         </ul>
-        <a href="#inscricao" class="btn btn-autumn">Garanta sua Vaga</a>
+        <a href="#inscricao" class="btn btn-autumn" onclick="if(typeof fbq==='function')fbq('track','InitiateCheckout')">Garanta sua Vaga</a>
       </div>
     </div>
   </section>
@@ -3692,7 +3702,7 @@ a:hover, a:active { color: var(--gold-light); }
     <div class="container cta-mid-content">
       <h2>Reserve agora: vagas limitadas</h2>
       <p>Inscrições abertas até <strong>20/11/2026</strong> · A partir de <strong>R$ 3.200 no PIX</strong></p>
-      <a href="#inscricao" class="btn btn-autumn btn-lg">Garanta sua Vaga</a>
+      <a href="#inscricao" class="btn btn-autumn btn-lg" onclick="if(typeof fbq==='function')fbq('track','InitiateCheckout')">Garanta sua Vaga</a>
     </div>
   </section>
 
@@ -3729,7 +3739,7 @@ a:hover, a:active { color: var(--gold-light); }
 
         <article class="prel-card" data-anim data-delay="1">
           <div class="prel-img">
-            <img src="images/pastor-pedro-luz-carla-akampamor.webp" alt="Pr. Pedro Luz e Carla, Akampamor 2026" loading="lazy" decoding="async" width="650" height="650" />
+            <img src="images/pastor-pedro-luz-carla-akampamor.webp" alt="Pr. Pedro Luz e Carla, Akampamor 2026" loading="lazy" decoding="async" width="400" height="400" />
             <div class="prel-overlay">
               <span>Pr. Pedro Luz &amp; Carla</span>
             </div>
@@ -3743,7 +3753,7 @@ a:hover, a:active { color: var(--gold-light); }
 
         <article class="prel-card" data-anim data-delay="2">
           <div class="prel-img">
-            <img src="images/pastor-estevam-fernandes-preletor-akampamor.webp" alt="Pr. Estevam Fernandes, Akampamor 2026" loading="lazy" decoding="async" width="650" height="650" />
+            <img src="images/pastor-estevam-fernandes-preletor-akampamor.webp" alt="Pr. Estevam Fernandes, Akampamor 2026" loading="lazy" decoding="async" width="400" height="400" />
             <div class="prel-overlay">
               <span>Pr. Estevam Fernandes</span>
             </div>
@@ -3757,7 +3767,7 @@ a:hover, a:active { color: var(--gold-light); }
 
         <article class="prel-card" data-anim data-delay="3">
           <div class="prel-img">
-            <img src="images/psi-cristiane-correia-preletora-akampamor.webp" alt="Psi. Cristiane Correia, Akampamor 2026" loading="lazy" decoding="async" width="650" height="650" />
+            <img src="images/psi-cristiane-correia-preletora-akampamor.webp" alt="Psi. Cristiane Correia, Akampamor 2026" loading="lazy" decoding="async" width="400" height="400" />
             <div class="prel-overlay">
               <span>Psi. Cristiane Correia</span>
             </div>
@@ -3771,7 +3781,7 @@ a:hover, a:active { color: var(--gold-light); }
 
         <article class="prel-card" data-anim data-delay="4">
           <div class="prel-img">
-            <img src="images/aryanne-marques-preletora-akampamor.webp" alt="Aryanne Marques, Akampamor 2026" loading="lazy" decoding="async" width="650" height="650" />
+            <img src="images/aryanne-marques-preletora-akampamor.webp" alt="Aryanne Marques, Akampamor 2026" loading="lazy" decoding="async" width="400" height="400" />
             <div class="prel-overlay">
               <span>Aryanne Marques</span>
             </div>
@@ -3785,7 +3795,7 @@ a:hover, a:active { color: var(--gold-light); }
 
         <article class="prel-card" data-anim data-delay="5">
           <div class="prel-img">
-            <img src="images/casal-cheio-de-graca-preletores-akampamor.webp" alt="Casal Cheio de Graça, Akampamor 2026" loading="lazy" decoding="async" width="650" height="650" />
+            <img src="images/casal-cheio-de-graca-preletores-akampamor.webp" alt="Casal Cheio de Graça, Akampamor 2026" loading="lazy" decoding="async" width="400" height="400" />
             <div class="prel-overlay">
               <span>Casal Cheio de Graça</span>
             </div>
@@ -3914,7 +3924,7 @@ a:hover, a:active { color: var(--gold-light); }
     </div>
 
     <div class="galeria-cta container">
-      <a href="#inscricao" class="btn btn-autumn btn-lg">Garanta sua Vaga</a>
+      <a href="#inscricao" class="btn btn-autumn btn-lg" onclick="if(typeof fbq==='function')fbq('track','InitiateCheckout')">Garanta sua Vaga</a>
     </div>
   </section>
 
@@ -4277,7 +4287,7 @@ a:hover, a:active { color: var(--gold-light); }
         <a href="#preletores">Preletores</a>
         <a href="#galeria">Galeria</a>
         <a href="#faq">FAQ</a>
-        <a href="#inscricao">Inscreva-se</a>
+        <a href="#inscricao" onclick="if(typeof fbq==='function')fbq('track','InitiateCheckout')">Inscreva-se</a>
       </nav>
       <div class="footer-contato">
         <a href="mailto:eventos@ibkmaceio.com.br" class="footer-email">
@@ -4296,12 +4306,9 @@ a:hover, a:active { color: var(--gold-light); }
     </div>
   </footer>
 
-  <!-- Botão de contato flutuante
-       TODO:IGREJA — se tiverem WhatsApp oficial, trocar o href por
-       https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1! e adicionar classe .wpp-float -->
-  <a class="contato-float" id="contato-float" href="mailto:eventos@ibkmaceio.com.br?subject=Dúvidas Akampamor 2026" aria-label="Fale com a secretaria">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-    <span class="contato-tooltip">Fale com a secretaria</span>
+  <a class="contato-float wpp-float" id="contato-float" href="https://wa.me/5582981016397?text=Ol%C3%A1%21+Tenho+d%C3%BAvidas+sobre+o+Akampamor+2026." target="_blank" rel="noopener" aria-label="Fale pelo WhatsApp" onclick="if(typeof fbq==='function')fbq('track','Contact')">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="contato-tooltip">Fale pelo WhatsApp</span>
   </a>
 
   <script src="js/main.js?v=20260415" defer></script>
