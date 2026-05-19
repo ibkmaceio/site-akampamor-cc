@@ -316,7 +316,7 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   opacity: 0;
   transition: opacity var(--t);
 }
-.btn-lg { padding: 1.05rem 2.75rem; font-size: 0.85rem; }
+.btn-lg { padding: 1.05rem 2.75rem; font-size: 0.85rem; min-width: 280px; }
 
 .btn-autumn {
   background: linear-gradient(135deg, #C2506E 0%, #8A3020 100%);
@@ -1949,16 +1949,12 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: var(--shadow), 0 0 0 1px rgba(160,64,96,0.12);
-  overflow: hidden;
 }
 .preco-card::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(184,120,32,0.08) 0%, transparent 40%);
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(184,120,32,0.12) 0%, transparent 70%);
   pointer-events: none;
 }
 .preco-card > * { position: relative; }
@@ -2903,7 +2899,7 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
 ══════════════════════════════════════════════ */
 @media (max-width: 375px) {
   .hero-ctas { flex-direction: column; align-items: center; }
-  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .btn-lg { width: 100%; }
   .countdown-num { font-size: 1.6rem; }
   .countdown-label { font-size: 0.65rem; }
   .parcelamento-tabela { gap: 0.3rem; }
@@ -3232,7 +3228,7 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
 ══════════════════════════════════════════════ */
 @media (max-width: 480px) {
   .hero-ctas { flex-direction: column; align-items: center; }
-  .hero-ctas .btn { width: 100%; }
+  .btn-lg { width: 100%; }
 
   /* Mais respiro nas bordas em telas pequenas */
   .container { padding: 0 1.25rem; }
@@ -3270,8 +3266,8 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
 ══════════════════════════════════════════════ */
 a:hover, a:active { color: var(--gold-light); }
 .btn:hover::after, .btn:active::after { opacity: 1; }
-.btn-autumn:hover, .btn-autumn:active { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(160,64,96,0.45); }
-.btn-ghost:hover, .btn-ghost:active { background: rgba(184,120,32,0.08); border-color: rgba(184,120,32,0.6); color: var(--gold-light); transform: translateY(-2px); }
+.btn-autumn:hover, .btn-autumn:active { background: var(--red-dark); box-shadow: 0 8px 28px rgba(160,64,96,0.45); }
+.btn-ghost:hover, .btn-ghost:active { background: rgba(184,120,32,0.08); border-color: rgba(184,120,32,0.6); color: var(--gold-light); }
 .btn-outline-autumn:hover, .btn-outline-autumn:active { background: rgba(160,64,96,0.12); border-color: var(--red); color: var(--white); }
 .logo:hover, .logo:active { opacity: 0.85; }
 .nav-desk a:hover, .nav-desk a:active { color: var(--gold); }
@@ -3459,7 +3455,7 @@ a:hover, a:active { color: var(--gold-light); }
 
         <div class="hero-ctas hero-anim-7">
           <a href="#inscricao" class="btn btn-autumn btn-lg" onclick="if(typeof fbq==='function')fbq('track','InitiateCheckout')">Garanta sua Vaga</a>
-          <a href="#investimento" class="btn btn-ghost btn-lg">Investimento a partir de R$ 3.200</a>
+          <a href="#investimento" class="btn btn-ghost btn-lg">Ver Investimento</a>
         </div>
 
         <p class="hero-preco hero-anim-7">A partir de <strong>R$ 3.200</strong> no PIX · ou <strong>10x sem juros</strong> no cartão</p>

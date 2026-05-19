@@ -598,6 +598,36 @@ const AKAMPAMOR_TARGET = new Date('2026-11-20T08:00:00-03:00');
   goTo(3, false);
 })();
 
+/* ─── Magnetic buttons ─── */
+(function initMagneticButtons() {
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  document.querySelectorAll('.btn-lg').forEach(btn => {
+    let raf = null;
+
+    btn.addEventListener('mousemove', (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const r  = btn.getBoundingClientRect();
+        const cx = r.left + r.width  / 2;
+        const cy = r.top  + r.height / 2;
+        const cap = 20;
+        const dx = Math.max(-cap, Math.min(cap, (e.clientX - cx) * 0.3));
+        const dy = Math.max(-cap, Math.min(cap, (e.clientY - cy) * 0.3));
+        btn.style.transition = 'transform 0.1s ease';
+        btn.style.transform  = `translate(${dx}px, ${dy}px)`;
+        raf = null;
+      });
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      btn.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      btn.style.transform  = '';
+    });
+  });
+})();
+
 /* ─── Scroll animations — fade-up ao entrar na viewport ─── */
 (function initScrollAnim() {
   const els = Array.from(document.querySelectorAll('[data-anim]'));
