@@ -152,6 +152,9 @@ const revealObs = new IntersectionObserver((entries) => {
     if (e.isIntersecting) {
       e.target.style.opacity = '1';
       e.target.style.transform = 'translateY(0)';
+      e.target.addEventListener('transitionend', () => {
+        e.target.style.transform = '';
+      }, { once: true });
       revealObs.unobserve(e.target);
     }
   });
