@@ -628,8 +628,8 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 
 .hero-foto-frame {
   position: relative;
-  width: 120%;
-  max-width: 720px;
+  width: 145%;
+  max-width: 900px;
   margin-right: -5rem;
 }
 
@@ -639,9 +639,8 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, transparent 55%, rgba(13,3,7,0.95) 100%),
-    linear-gradient(to right,  transparent 70%, rgba(13,3,7,0.6)  100%),
-    linear-gradient(to top,    transparent 90%, rgba(13,3,7,0.4)  100%);
+    linear-gradient(to right, transparent 70%, rgba(13,3,7,0.6) 100%),
+    linear-gradient(to top,   transparent 90%, rgba(13,3,7,0.4) 100%);
   pointer-events: none;
   z-index: 1;
 }
