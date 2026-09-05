@@ -550,20 +550,8 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
-  padding-top: calc(76px + var(--db-h));
+  padding-top: calc(76px + var(--db-h) + 70px);
   margin-left: -6rem;
-}
-
-.hero-right::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 15%;
-  background: linear-gradient(to top, #100508 0%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
 }
 
 .hero-foto-frame {
@@ -573,6 +561,8 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   align-items: flex-end;
   justify-content: flex-start;
   position: relative;
+  transform: scale(1.15);
+  transform-origin: bottom left;
 }
 
 @keyframes heroFotoEntrada {
@@ -851,15 +841,15 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
-  color: rgba(240,223,208,0.3);
+  color: rgba(255,255,255,0.9);
   animation: bob 2.4s ease-in-out infinite;
   cursor: pointer;
 }
 .hero-scroll svg { width: 22px; height: 22px; }
 
 @keyframes bob {
-  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.3; }
-  50% { transform: translateX(-50%) translateY(8px); opacity: 0.6; }
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.55; }
+  50% { transform: translateX(-50%) translateY(8px); opacity: 0.9; }
 }
 
 /* ══════════════════════════════════════════════
@@ -3465,7 +3455,7 @@ a:hover, a:active { color: var(--gold-light); }
       <!-- Preletores: coluna direita do grid -->
       <div class="hero-right">
         <div class="hero-foto-frame">
-          <img src="images/preletores-akampamor-2026.webp" alt="Preletores do Akampamor 2026: 4 Estações" class="hero-foto" width="720" height="846" fetchpriority="high" />
+          <img src="images/preletores-akampamor-2026.webp" alt="Preletores do Akampamor 2026: 4 Estações" class="hero-foto" width="800" height="639" fetchpriority="high" />
         </div>
       </div>
 
