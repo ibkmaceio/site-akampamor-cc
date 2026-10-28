@@ -74,7 +74,8 @@
       { "@type": "Person", "name": "Pr. Estevam Fernandes" },
       { "@type": "Person", "name": "Psi. Cristiane Correia" },
       { "@type": "Person", "name": "Marisangela Siqueira" },
-      { "@type": "Person", "name": "Marcio Rocha" }
+      { "@type": "Person", "name": "Marcio Rocha" },
+      { "@type": "Organization", "name": "Um Casal Cheio da Graça" }
     ],
     "offers": [
       {
@@ -107,7 +108,7 @@
   <!-- ── Performance: preload crítico ── -->
   <link rel="preload" href="images/fundo-akampamor-2026-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" />
   <link rel="preload" href="images/fundo-akampamor-2026.webp" as="image" type="image/webp" media="(min-width: 769px)" />
-  <link rel="preload" href="images/preletores-akampamor-2026.webp" as="image" type="image/webp" media="(min-width: 961px)" />
+  <link rel="preload" href="images/hero-preletores-akampamor-2026.webp" as="image" type="image/webp" media="(min-width: 961px)" />
   <link rel="preconnect" href="https://live.staticflickr.com" crossorigin />
   <link rel="preconnect" href="https://img.youtube.com" crossorigin />
   <link rel="preload" href="assets/fonts/playfair-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -1066,38 +1067,12 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 .sobre-imagem img {
   border-radius: var(--radius);
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: auto;
+  aspect-ratio: 9 / 11;
   object-fit: cover;
   object-position: top center;
   box-shadow: var(--shadow);
   filter: brightness(0.92) contrast(1.06);
-}
-.sobre-badge {
-  position: absolute;
-  bottom: -1.5rem;
-  right: -1.5rem;
-  background: linear-gradient(135deg, var(--red), var(--terracotta));
-  color: var(--white);
-  padding: 1.35rem 1.75rem;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-red);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-}
-.sobre-badge strong {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 900;
-  line-height: 1;
-}
-.sobre-badge span {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.85;
 }
 
 .sobre-texto { display: flex; flex-direction: column; }
@@ -1278,9 +1253,10 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 
 .prel-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.75rem;
-  margin-top: 3.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 3.5rem auto 0;
 }
 
 .prel-card {
@@ -1924,6 +1900,8 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
   gap: 2.5rem;
   align-items: stretch;
 }
+.inv-grid > * { min-width: 0; }
+.preco-card .btn { white-space: normal; max-width: 100%; }
 
 /* Pricing card */
 .preco-card {
@@ -1983,6 +1961,7 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.02em;
+  padding: 0 0.08em; /* glifo "3" ultrapassa a caixa; sem padding o background-clip:text corta a borda */
   background: linear-gradient(180deg, var(--white) 0%, var(--gold-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2204,13 +2183,13 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
   bottom: -0.55rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.75rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted-dim);
   background: var(--dark-2);
-  padding: 0.1rem 0.4rem;
+  padding: 0.1rem 0.3rem;
   border-radius: 2rem;
   white-space: nowrap;
 }
@@ -2604,6 +2583,7 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
 }
 
 .reel-label {
+  display: none;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -3031,6 +3011,7 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
 [data-anim][data-delay="3"] { transition-delay: 0.30s; }
 [data-anim][data-delay="4"] { transition-delay: 0.40s; }
 [data-anim][data-delay="5"] { transition-delay: 0.50s; }
+[data-anim][data-delay="6"] { transition-delay: 0.60s; }
 
 /* ── Micro-movimentos: hover lift ── */
 .estacao-card {
@@ -3071,7 +3052,6 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
   .hero-particles { display: none; }
   [class*="hero-anim-"] { animation: none !important; opacity: 1 !important; }
   [data-anim] { opacity: 1 !important; transform: none !important; }
-  .sobre-badge { animation: none; }
 }
 
 /* ══════════════════════════════════════════════
@@ -3158,7 +3138,7 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
   .hero-selo { margin-left: auto; margin-right: auto; }
 
   .sobre-grid { grid-template-columns: 1fr; gap: 4rem; }
-  .sobre-imagem { display: none; }
+  .sobre-imagem { max-width: 420px; margin: 0 auto; }
 
   .versiculo-content { flex-direction: column; gap: 2rem; text-align: center; }
   .versiculo-numero { display: none; }
@@ -3179,6 +3159,7 @@ button.reel-facade { border: none; background: none; padding: 0; cursor: pointer
    RESPONSIVE — 640px (Mobile)
 ══════════════════════════════════════════════ */
 @media (max-width: 640px) {
+  .parcela-item.parcela-passou::after { display: none; }
   .estacoes-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
   .prel-grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; margin: 3rem auto 0; }
   .info-grid { grid-template-columns: 1fr; }
@@ -3455,7 +3436,7 @@ a:hover, a:active { color: var(--gold-light); }
       <!-- Preletores: coluna direita do grid -->
       <div class="hero-right">
         <div class="hero-foto-frame">
-          <img src="images/preletores-akampamor-2026.webp" alt="Preletores do Akampamor 2026: 4 Estações" class="hero-foto" width="800" height="639" fetchpriority="high" />
+          <img src="images/hero-preletores-akampamor-2026.webp" alt="Preletores do Akampamor 2026: 4 Estações do Casamento" class="hero-foto" width="917" height="1120" fetchpriority="high" />
         </div>
       </div>
 
@@ -3563,11 +3544,7 @@ a:hover, a:active { color: var(--gold-light); }
   <section class="sobre" id="sobre">
     <div class="container sobre-grid">
       <div class="sobre-imagem" data-anim="left">
-        <img src="images/casal-retiro-akampamor-2026.webp" alt="Casal no Akampamor 2026" loading="lazy" decoding="async" width="800" height="800" />
-        <div class="sobre-badge">
-          <strong>Nov 2026</strong>
-          <span>Gravatá – PE</span>
-        </div>
+        <img src="images/pedro-luz-carla-akampamor-2026.webp" alt="Pr. Pedro Luz e Carla — Akampamor 2026, 20 a 22 de novembro" loading="lazy" decoding="async" width="800" height="978" />
       </div>
       <div class="sobre-texto" data-anim data-delay="2">
         <span class="tag" data-anim data-delay="3">O Evento</span>
@@ -3792,6 +3769,20 @@ a:hover, a:active { color: var(--gold-light); }
             <span class="prel-tag">Pastor Fundador da CEZN</span>
             <h3>Pr. Marcio Rocha</h3>
             <p>Pastor fundador da Igreja CEZN, no Rio de Janeiro. Ao lado da esposa, Pra. Marisangela, pastoreia com dedicação e ministra sobre família e casamento, ajudando casais a fortalecerem seus laços à luz da Palavra de Deus.</p>
+          </div>
+        </article>
+
+        <article class="prel-card" data-anim data-delay="6">
+          <div class="prel-img">
+            <img src="images/casal-cheio-da-graca-preletores-akampamor.webp" alt="Casal Cheio da Graça — Pr. Alan e Pra. Graciele Daniel, Akampamor 2026" loading="lazy" decoding="async" width="400" height="400" />
+            <div class="prel-overlay">
+              <span>Casal Cheio da Graça</span>
+            </div>
+          </div>
+          <div class="prel-body">
+            <span class="prel-tag">Pr. Alan &amp; Pra. Graciele Daniel</span>
+            <h3>Casal Cheio da Graça</h3>
+            <p>Pr. Alan Daniel e Pra. Graciele Daniel, líderes da Igreja do Evangelho Quadrangular em Sorocaba (SP). Casados desde 2004 e pais de três filhas, unem ensino bíblico sobre família e bom humor em conferências por todo o Brasil e no exterior, alcançando centenas de milhares de casais nas redes.</p>
           </div>
         </article>
 
